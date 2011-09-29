@@ -12,11 +12,24 @@ Forensics adds a few things to the stock Profiler that should make your life as 
 
 The default look, and some of the additional functionality, was heavily inspired by ParticleTree's [PHP Quick Profiler](http://particletree.com/features/php-quick-profiler/).
 
-## Installing
+## Requirements
+- PHP 5.2+
+- CodeIgniter 2 +
 
-Installing Forensics is a breeze. Copy the files to the application/libraries and application/views folder as appropriate, and you're done. Whenever you tell CI to turn on the enable the profiler (by _$this->output->enable_profiler(true)_ ) it should appear in the top right-hand corner of your screen.
+## Installing 
 
-NOTE: If you're installing Forensics as a Spark, you must *move the profiler_template.php* file into your _application/views_ folder.
+## Just enable profiler in your controller
+
+	<?php class Example_controller extends CI_Controller {
+		
+		parent :: __construct ()
+		{
+			parent::__construct();
+			$this->load->spark('toolbar/1.0');
+			$this->output->enable_profiler(true);
+		}
+	
+	}
 
 ## Forensics Logging
 
