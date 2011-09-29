@@ -25,7 +25,7 @@ The default look, and some of the additional functionality, was heavily inspired
 		parent :: __construct ()
 		{
 			parent::__construct();
-			$this->load->spark('toolbar/1.0');
+			$this->load->spark('Debug-Toolbar/1.0.0');
 			$this->output->enable_profiler(true);
 		}
 	
