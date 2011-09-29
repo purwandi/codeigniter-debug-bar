@@ -30,7 +30,7 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/general/profiling.html
  */
-class CI_Profiler {
+class CI_Profiler extends CI_Loader {
 
 	var $CI;
 
@@ -56,6 +56,7 @@ class CI_Profiler {
 	{
 		$this->CI =& get_instance();
 		$this->CI->load->language('profiler');
+		$this->CI->load->library('session');
 
 		// default all sections to display
 		foreach ($this->_available_sections as $section)
@@ -492,29 +493,8 @@ class CI_Profiler {
 				$fields_displayed++;				
 			}
 		}
-
-		// Has the user created an override in application/views?
-		if (is_file(APPPATH .'views/profiler_template'.EXT))
-		{
-			$output = $this->CI->load->view('profiler_template', array('sections' => $this->_sections), true);
-		}
-		else
-		{
-			// Load the view from system/views
-			$orig_view_path = $this->CI->load->_ci_view_path;
-			$this->CI->load->_ci_view_path = BASEPATH .'views/';
-			//echo $this->CI->load->_ci_view_path;
-
-			$output = $this->CI->load->_ci_load(array(
-					'_ci_view' 		=> 'profiler_template', 
-					'_ci_vars' 		=> array('sections' => $this->_sections), 
-					'_ci_return'	=> true,
-			));
 		
-			$this->CI->load->_ci_view_path = $orig_view_path;
-		}
-		
-		return $output;
+		return $this->CI->load->view('profiler_template', array('sections' => $this->_sections), true);
 	}
 
 }

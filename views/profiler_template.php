@@ -34,70 +34,36 @@
 </style>
 
 <script type="text/javascript">
-var ci_profiler_bar = {
-
-	// current toolbar section thats open
-	current: null,
-	
-	// current vars and config section open
-	currentvar: null,
-	
-	// current config section open
-	currentli: null,
-	
-	// toggle a toolbar section
-	show : function(obj, el) {
-		if (obj == ci_profiler_bar.current) {
-			ci_profiler_bar.off(obj);
-			ci_profiler_bar.current = null;
-		} else {
-			ci_profiler_bar.off(ci_profiler_bar.current);
-			ci_profiler_bar.on(obj);
-			ci_profiler_bar.remove_class(ci_profiler_bar.current, 'current');
-			ci_profiler_bar.current = obj;
-			//ci_profiler_bar.add_class(el, 'current');
-		}
-	},
-	
-	// turn an element on
-	on : function(obj) {
-		if (document.getElementById(obj) != null)
-			document.getElementById(obj).style.display = '';
-	},
-	
-	// turn an element off
-	off : function(obj) {
-		if (document.getElementById(obj) != null)
-			document.getElementById(obj).style.display = 'none';
-	},
-	
-	// toggle an element
-	toggle : function(obj) {
-		if (typeof obj == 'string')
-			obj = document.getElementById(obj);
-			
-		if (obj)
-			obj.style.display = obj.style.display == 'none' ? '' : 'none';
-	},
-	
-	// close the toolbar
-	close : function() {
-		document.getElementById('codeigniter-profiler').style.display = 'none';
-	},
-	
-	// Add class to element
-	add_class : function(obj, class) {
-		alert(obj);
-		document.getElementById(obj).className += " "+ class;
-	},
-	
-	// Remove class from element
-	remove_class : function(obj, class) {
-		if (obj != undefined) {
-			document.getElementById(obj).className = document.getElementById(obj).className.replace(/\bclass\b/, '');
-		}
+current = null;
+currentvar = null;
+currentli = null;
+function show (obj, el)
+{
+	if (obj == current) {
+		off(obj);
+		current = null;
+	} else {
+		off(current);
+		on(obj);
+		remove_class(current, 'current');
+		current = obj;
+		//ci_profiler_bar.add_class(el, 'current');
 	}
-};
+}
+function on (obj){ if (document.getElementById(obj) != null) document.getElementById(obj).style.display = ''; }
+function off(obj){ if (document.getElementById(obj) != null) document.getElementById(obj).style.display = 'none';}
+function toggle (obj){
+	if (typeof obj == 'string')	obj = document.getElementById(obj);
+	if (obj) obj.style.display = obj.style.display == 'none' ? '' : 'none';
+}
+function close_bar () { document.getElementById('codeigniter-profiler').style.display = 'none';
+}
+function add_class(obj, clas){ alert(obj); document.getElementById(obj).className += " "+ clas; }
+function remove_class(obj, clas){
+	if (obj != undefined) {
+		document.getElementById(obj).className = document.getElementById(obj).className.replace(/\bclass\b/, '');
+	}
+}
 </script>
 
 <div id="codeigniter-profiler" class="bottom-right">
@@ -106,7 +72,7 @@ var ci_profiler_bar = {
 		
 		<!-- Console -->
 		<?php if (isset($sections['console'])) : ?>
-			<a href="#" id="ci-profiler-menu-console" onclick="ci_profiler_bar.show('ci-profiler-console', 'ci-profiler-menu-console'); return false;">
+			<a href="#" id="ci-profiler-menu-console" onclick="show('ci-profiler-console', 'ci-profiler-menu-console');return false;">
 				<span><?php echo is_array($sections['console']) ? $sections['console']['log_count'] + $sections['console']['memory_count'] : 0 ?></span>
 				Console
 			</a>
@@ -114,11 +80,11 @@ var ci_profiler_bar = {
 		
 		<!-- Benchmarks -->
 		<?php if (isset($sections['benchmarks'])) :?>
-			<a href="#" id="ci-profiler-menu-time" onclick="ci_profiler_bar.show('ci-profiler-benchmarks', 'ci-profiler-menu-time'); return false;">
+			<a href="#" id="ci-profiler-menu-time" onclick="show('ci-profiler-benchmarks', 'ci-profiler-menu-time'); return false;">
 				<span><?php echo $this->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') ?> s</span>
 				Load Time
 			</a>
-			<a href="#" id="ci-profiler-menu-memory" onclick="ci_profiler_bar.show('ci-profiler-memory', 'ci-profiler-menu-memory'); return false;">
+			<a href="#" id="ci-profiler-menu-memory" onclick="show('ci-profiler-memory', 'ci-profiler-menu-memory'); return false;">
 				<span><?php echo (! function_exists('memory_get_usage')) ? '0' : round(memory_get_usage()/1024/1024, 2).' MB' ?></span>
 				Memory Used
 			</a>
@@ -126,7 +92,7 @@ var ci_profiler_bar = {
 		
 		<!-- Queries -->
 		<?php if (isset($sections['queries'])) : ?>
-			<a href="#" id="ci-profiler-menu-queries" onclick="ci_profiler_bar.show('ci-profiler-queries', 'ci-profiler-menu-queries'); return false;">
+			<a href="#" id="ci-profiler-menu-queries" onclick="show('ci-profiler-queries', 'ci-profiler-menu-queries'); return false;">
 				<span><?php echo is_array($sections['queries']) ? count($sections['queries']) : 0 ?> Queries</span>
 				Database
 			</a>
@@ -134,19 +100,19 @@ var ci_profiler_bar = {
 		
 		<!-- Vars and Config -->
 		<?php if (isset($sections['http_headers']) || isset($sections['get']) || isset($sections['config']) || isset($sections['post']) || isset($sections['uri_string']) || isset($sections['controller_info'])) : ?>
-			<a href="#" id="ci-profiler-menu-vars" onclick="ci_profiler_bar.show('ci-profiler-vars', 'ci-profiler-menu-vars'); return false;">
+			<a href="#" id="ci-profiler-menu-vars" onclick="show('ci-profiler-vars', 'ci-profiler-menu-vars'); return false;">
 				<span>vars</span> &amp; Config
 			</a>
 		<?php endif; ?>
 		
 		<!-- Files -->
 		<?php if (isset($sections['files'])) : ?>
-			<a href="#" id="ci-profiler-menu-files" onclick="ci_profiler_bar.show('ci-profiler-files', 'ci-profiler-menu-files'); return false;">
+			<a href="#" id="ci-profiler-menu-files" onclick="show('ci-profiler-files', 'ci-profiler-menu-files'); return false;">
 				<span><?php echo is_array($sections['files']) ? count($sections['files']) : 0 ?></span> Files
 			</a>
 		<?php endif; ?>
 		
-		<a href="#" id="ci-profiler-menu-exit" onclick="ci_profiler_bar.close(); return false;" style="width: 2em"></a>
+		<a href="#" id="ci-profiler-menu-exit" onclick="close_bar(); return false;" style="width: 2em"></a>
 	</div>
 
 <?php if (count($sections) > 0) : ?>
