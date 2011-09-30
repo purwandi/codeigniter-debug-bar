@@ -31,7 +31,9 @@ In addition to the normal information that CI's Profiler provides, you now have 
 
 	Console::log($data) 
 
-	This function accepts any data type and simply creates a pretty, readable output of the variable, using print_r(). Very handy for logging where you are in the script execution, or outputting the contents of an array, or stdObject to your new 'console'.
+	This function accepts any data type and simply creates a pretty, readable output of the variable, 
+	using print_r(). Very handy for logging where you are in the script execution, or outputting the contents 
+	of an array, or stdObject to your new 'console'.
 
 	Console::log_memory($variable, $name)
 
