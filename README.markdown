@@ -2,15 +2,13 @@
 
 Forensics is a high-powered, completely customizable replacement for the CodeIgniter Profiler.
 
-## What's New?
-
 ## Requirements
 - PHP 5.2+
 - CodeIgniter 2 +
 
 ## Installing 
 
-## Just enable profiler in your controller
+Just enable profiler in your controller
 
 	<?php
 	class Example_controller extends CI_Controller {
@@ -39,9 +37,11 @@ In addition to the normal information that CI's Profiler provides, you now have 
 
 	The log_memory function has two uses.
 
-	1) When no parameters are passed in, it will record the current memory usage of your script. This is perfect for watching a loop and checking for memory leaks.
-	2) If you pass in the $variable and $name parameters, will output the amount of memory that variable is using to the console.
-	   In order to use either of these functions, you must be sure to load the Console library before you use it.
+	1) When no parameters are passed in, it will record the current memory usage of your script. 
+	  This is perfect for watching a loop and checking for memory leaks.
+	2) If you pass in the $variable and $name parameters, will output the amount of memory that variable 
+	   is using to the console. In order to use either of these functions, you must be sure 
+	   to load the Console library before you use it.
 
 ## Other Tips
 
