@@ -1,5 +1,5 @@
 <style type="text/css">
-	#codeigniter-profiler { clear: both; background: #222; opacity: 0.45; padding: 0 5px; font-family: Helvetica, sans-serif; font-size: 10px !important; line-height: 12px; position: absolute; width: auto; min-width: 52em; max-width: 90%; z-index: 1000; }
+	#codeigniter-profiler { clear: both; background: #222; opacity: 0.45; padding: 0 5px; font-family: Helvetica, sans-serif; font-size: 10px !important; line-height: 12px; position: fixed; width: auto; min-width: 52em; max-width: 90%; z-index: 1000; }
 	#codeigniter-profiler:hover { background: #101010; opacity: 1.0; }
 	
 	#codeigniter-profiler.bottom-right { bottom:0; right: 0; -webkit-border-top-left-radius: 7px; -moz-border-radius-topleft: 7px; border-top-left-radius: 7px; -webkit-box-shadow: -1px -1px 10px #222; -moz-box-shadow: -1px -1px 10px #222; box-shadow: -1px -1px 10px #222; }	
