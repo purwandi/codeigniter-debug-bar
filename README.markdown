@@ -48,3 +48,6 @@ In addition to the normal information that CI's Profiler provides, you now have 
 ## Other Tips
 
 You can change the location of the profiler bar by changing the class of the *codeigniter-profiler* div (around line 102) of the *profiler_template* view to one of the following four locations: 'top-right', 'top-left', 'bottom-left', and 'bottom-right'.
+
+## Credits
+Many thanks for [lonnieezell](https://github.com/lonnieezell/) :)
