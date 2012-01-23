@@ -35,19 +35,19 @@ class CI_Profiler extends CI_Loader {
 	var $CI;
 
 	protected $_available_sections = array(
-										'benchmarks',
-										'get',
-										'memory_usage',
-										'post',
-										'uri_string',
-										'controller_info',
-										'queries',
-										'http_headers',
-										'config',
-										'files',
-										'console',
-										'userdata'
-										);
+		'benchmarks',
+		'get',
+		'memory_usage',
+		'post',
+		'uri_string',
+		'controller_info',
+		'queries',
+		'http_headers',
+		'config',
+		'files',
+		'console',
+		'userdata'
+	);
 	protected $_sections = array();		// Stores _compile_x() results 
 
 	// --------------------------------------------------------------------
@@ -182,17 +182,9 @@ class CI_Profiler extends CI_Loader {
 				foreach ($db->queries as $key => $val)
 				{
 					$time = number_format($db->query_times[$key], 4);
-
-					/*
-					$val = highlight_code($val, ENT_QUOTES);
-
-					foreach ($highlight as $bold)
-					{
-						$val = str_replace($bold, '<strong>'.$bold.'</strong>', $val);
-					}
-					*/
-
 					$output[$time] = $val;
+					$time += $time;
+					
 				}
 			}
 
