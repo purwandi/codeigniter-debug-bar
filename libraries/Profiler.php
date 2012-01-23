@@ -182,9 +182,7 @@ class CI_Profiler extends CI_Loader {
 				foreach ($db->queries as $key => $val)
 				{
 					$time = number_format($db->query_times[$key], 4);
-					$output[$time] = $val;
-					$time += $time;
-					
+					$output[] = array($time, $val);
 				}
 			}
 

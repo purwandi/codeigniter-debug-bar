@@ -212,10 +212,11 @@ function remove_class(obj, clas){
 			<h2>Queries</h2>
 			
 			<?php if (is_array($sections['queries'])) : ?>
+				<?php ksort($sections['queries']); ?>
 				
 				<table class="main" cellspacing="0">
 				<?php foreach ($sections['queries'] as $key => $val) : ?>
-					<tr><td class="hilight"><?php echo $key ?></td><td><?php echo $val ?></td></tr>
+					<tr><td class="hilight"><?php echo $val[0] ?></td><td><?php echo $val[1] ?></td></tr>
 				<?php endforeach; ?>
 				</table>
 
