@@ -429,7 +429,7 @@ class CI_Profiler extends CI_Loader {
 					$output[$key] = "'$val'";
 				}
 				
-				if (is_array($val))
+				if (is_array($val) || is_object($val))
 				{
 					$output[$key] = htmlspecialchars(stripslashes(print_r($val, true)));
 				}
