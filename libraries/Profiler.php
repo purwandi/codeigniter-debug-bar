@@ -55,24 +55,15 @@ class CI_Profiler extends CI_Loader {
 	public function __construct($config = array())
 	{
 		$this->CI =& get_instance();
-		$this->CI->load->language('profiler');
-		$this->CI->load->library('session');
+		
+		$config = array_merge($config, config_item('debugbar_sections'));
 
 		// default all sections to display
 		foreach ($this->_available_sections as $section)
 		{
-			if ( ! isset($config[$section]))
-			{
-				$this->_compile_{$section} = TRUE;
-			}
+			$this->_compile_{$section} = !empty($config[$section]);
 		}
 		
-		// Make sure the Console is loaded.
-		if (!class_exists('Console'))
-		{
-			$this->CI->load->library('Console');
-		}
-
 		$this->set_sections($config);
 	}
 
