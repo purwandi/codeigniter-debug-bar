@@ -8,16 +8,15 @@ Forensics is a high-powered, completely customizable replacement for the CodeIgn
 
 ## Installing 
 
-Just enable profiler in your controller
+Either load the spark in your controller or autoload it. 
 
 	<?php
 	class Example_controller extends CI_Controller {
 		
 		public function index()
 		{
-			$this->load->spark('Debug-Toolbar/1.x.x');   
-			$this->load->library('console');                        
-			$this->output->enable_profiler(true);
+			$this->load->spark('Debug-Toolbar/1.x.x');  
+			 
 			Console::log('Hey, this is really cool');
 			$this->load->view('welcome_message');
 		}
@@ -48,6 +47,8 @@ In addition to the normal information that CI's Profiler provides, you now have 
 ## Other Tips
 
 You can change the location of the profiler bar by changing the class of the *codeigniter-profiler* div (around line 102) of the *profiler_template* view to one of the following four locations: 'top-right', 'top-left', 'bottom-left', and 'bottom-right'.
+
+Control which sections get loaded into the profiler in the debugbar config file or in the profiler config file. 
 
 ## Credits
 Many thanks for [lonnieezell](https://github.com/lonnieezell/) :)

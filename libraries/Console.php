@@ -50,6 +50,11 @@ class Console {
 	{			
 		self::init();
 		
+		if (config_item('debugbar_enabled')){
+			
+			self::$ci->output->enable_profiler(TRUE);
+		}
+		
 		log_message('debug', 'Forensics Console library loaded');
 	}
 	
