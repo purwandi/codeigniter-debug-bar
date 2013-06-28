@@ -50,7 +50,7 @@ class Console {
 	{			
 		self::init();
 		
-		if (config_item('debugbar_enabled')){
+		f ( config_item('debugbar_enabled') and $_SERVER['HTTP_X_REQUESTED_WITH']!="XMLHttpRequest" ){
 			
 			self::$ci->output->enable_profiler(TRUE);
 		}
